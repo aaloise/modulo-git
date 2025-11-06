@@ -13,6 +13,9 @@ Seu objetivo é:
 Boa sorte e bons commits! 🚀
 """
 
+# Usaremos 're' para a função de verificação de tag
+import re
+
 def mostrar_mensagem_inicial():
     """
     Exibe uma mensagem de boas-vindas ao desafio.
@@ -44,7 +47,13 @@ def verificar_tag_valida(tag):
     Verifica se uma tag está no formato 'vX.Y' (ex: v1.0, v2.1).
     Retorna True se o formato for válido, caso contrário False.
     """
-    pass
+    # O formato pode ter mais de um dígito, ex: v1.10 ou v12.3
+    # Por isso usamos \d+ (um ou mais dígitos)
+    padrao_regex = re.compile(r"^v\d+\.\d+$")
+    
+    # re.match() verifica se o padrão confere a partir do início da string
+    # Usamos bool() para converter o resultado (objeto Match ou None) para True/False
+    return bool(padrao_regex.match(tag))
 
 
 def gerar_relatorio_final(funcoes_concluidas):
